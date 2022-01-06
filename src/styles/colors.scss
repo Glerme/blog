@@ -1,17 +1,28 @@
 // Literal Colors
-
-$white: #ffffff;
+$white: #fefbfb;
 $black: #000000;
-$blue: #0000ff;
+
+$blue: #13131f;
 $orange: #ffa500;
 $green: #008000;
 $red: #ff0000;
 
-// Contextual Colors
+$purple-light: #8257e6;
+$purple-dark: #13131f;
+$gray-50: #c4c4c4;
+$gray-200: #989898;
+$gray-500: #282830;
 
-$primary: $white;
-$secondary: $black;
+// Contextual Colors
+$primary: $purple-light;
+$secondary: $white;
+
+$text-primary: $white;
+$text-secondary: $gray-50;
+
 $info: $blue;
+
 $warning: $orange;
 $success: $green;
 $error: $red;
+$background: $purple-dark;

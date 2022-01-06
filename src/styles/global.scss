@@ -52,7 +52,7 @@ html {
 }
 
 body {
-  background: #000111;
+  background: colors.$background;
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -64,4 +64,11 @@ button {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.container-global {
+  max-width: 1140px;
+  margin: 0 auto;
+
+  width: 100%;
 }

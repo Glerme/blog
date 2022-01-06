@@ -1,0 +1,232 @@
+@use 'styles/colors.scss';
+@use 'styles/breakpoints.scss';
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0.8;
+
+  width: 100%;
+
+  @include breakpoints.and-up(md) {
+    position: initial;
+  }
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 1rem;
+
+  color: colors.$white;
+
+  z-index: 5;
+
+  position: relative;
+
+  @include breakpoints.and-up(md) {
+    justify-content: flex-end;
+    margin: 0 auto;
+
+    max-width: 1400px;
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      width: 100%;
+    }
+  }
+}
+
+.logo-button {
+  display: grid;
+  place-items: center;
+
+  padding: 1rem;
+  height: 100%;
+
+  @include breakpoints.and-up(md) {
+    width: 20%;
+  }
+
+  a {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+
+.nav-buttons {
+  display: none;
+
+  list-style: none;
+
+  background: colors.$secondary;
+
+  width: 100%;
+  height: 100vh;
+
+  @include breakpoints.and-up(md) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    background: transparent;
+
+    margin-top: 0;
+
+    height: initial;
+  }
+
+  li {
+    transform: translateY(2%);
+    transition: all 300ms ease-in;
+
+    padding: 1rem;
+
+    width: 100%;
+
+    &:first-child {
+      margin-top: 5rem;
+    }
+
+    @include breakpoints.and-up(md) {
+      margin-top: initial;
+
+      width: initial;
+      height: initial;
+
+      &:first-child {
+        margin-top: initial;
+      }
+    }
+  }
+
+  a {
+    display: grid;
+    place-items: center;
+
+    font-size: 1.2rem;
+
+    margin: 1rem;
+
+    transition: all 0.4s ease-in;
+
+    &:hover {
+      color: colors.$red;
+    }
+  }
+
+  h1 {
+  }
+}
+
+.nav-buttons-open {
+  display: grid;
+  place-items: center;
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  @include breakpoints.and-up(md) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+
+    margin-top: 0;
+
+    position: initial;
+
+    height: initial;
+  }
+}
+
+.menu-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: transparent;
+  border: 0;
+  font-size: 0;
+
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  padding: 0.9rem;
+
+  @include breakpoints.and-up(md) {
+    display: none;
+  }
+}
+
+.hamburguer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 2px;
+  background-color: #ffffff;
+  position: relative;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition-duration: 0.5s;
+}
+
+.hamburguer:before,
+.hamburguer:after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition-duration: 0.5s;
+}
+
+.hamburguer:before {
+  top: -16px;
+}
+.hamburguer:after {
+  top: 16px;
+}
+
+.menu-button.active .hamburguer {
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+}
+
+.menu-button.active .hamburguer:before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.menu-button.active .hamburguer:after {
+  top: 0;
+  transform: rotate(135deg);
+}
+
+.content {
+  display: grid;
+
+  margin: 0 auto;
+
+  padding: 0 1rem;
+
+  max-width: 1400px;
+
+  overflow: hidden;
+}
