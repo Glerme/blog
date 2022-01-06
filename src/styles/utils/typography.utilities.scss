@@ -1,0 +1,48 @@
+@use 'sass:map';
+@use '../typography.scss';
+@use '../colors.scss';
+
+.heading1 {
+  font-size: map.get(typography.$sizes, 'h1');
+  font-weight: map.get(typography.$weights, 'h1');
+}
+
+.heading2 {
+  font-size: map.get(typography.$sizes, 'h2');
+  font-weight: map.get(typography.$weights, 'h2');
+}
+
+.heading3 {
+  font-size: map.get(typography.$sizes, 'h3');
+  font-weight: map.get(typography.$weights, 'h3');
+}
+
+.strong1 {
+  font-size: map.get(typography.$sizes, 's1');
+  font-weight: map.get(typography.$weights, 's1');
+}
+
+.body1 {
+  font-size: map.get(typography.$sizes, 'b1');
+  font-weight: map.get(typography.$weights, 'b1');
+}
+
+.body2 {
+  font-size: map.get(typography.$sizes, 'b2');
+  font-weight: map.get(typography.$weights, 'b2');
+}
+
+.body3 {
+  font-size: map.get(typography.$sizes, 'b3');
+  font-weight: map.get(typography.$weights, 'b3');
+}
+
+.caption1 {
+  font-size: map.get(typography.$sizes, 'caption1');
+  font-weight: map.get(typography.$weights, 'caption1');
+}
+
+.caption2 {
+  font-size: map.get(typography.$sizes, 'caption2');
+  font-weight: map.get(typography.$weights, 'caption2');
+}

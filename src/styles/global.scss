@@ -1,0 +1,67 @@
+@use './breakpoints';
+@use './colors.scss';
+@import './utils/colors.utilities.scss';
+@import './utils/typography.utilities.scss';
+@import '../../node_modules/normalize.css/normalize.css';
+
+:root {
+  --color-white: {$white};
+
+  --color-green: {$green};
+  --color-blue: {$blue};
+  --color-orange: {$orange};
+  --color-red: {$red};
+
+  --primary: {$white};
+  --secondary: {$black};
+  --info: {$blue};
+  --warning: {$orange};
+  --error: {$red};
+  --success: {$green};
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+div#__next {
+  scroll-behavior: smooth;
+
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  font-size: 16px;
+
+  @include breakpoints.and-up(sm) {
+    font-size: 87.5%;
+  }
+
+  @include breakpoints.and-up(md) {
+    font-size: 93.74%;
+  }
+
+  @include breakpoints.and-up(lg) {
+    font-size: 100%;
+  }
+}
+
+body {
+  background: #000111;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

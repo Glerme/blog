@@ -1,0 +1,85 @@
+@use 'sass:map';
+
+$breakpoints: (
+  'xs': (
+    'start': 0px,
+    'end': 575px,
+  ),
+  'sm': (
+    'start': 576px,
+    'end': 767px,
+  ),
+  'md': (
+    'start': 768px,
+    'end': 991px,
+  ),
+  'lg': (
+    'start': 992px,
+    'end': 1199px,
+  ),
+  'xl': (
+    'start': 1200px,
+    'end': 1399px,
+  ),
+  'xxl': (
+    'start': 1400px,
+  )
+);
+
+@mixin only($breakpoint) {
+  $currentBreakpoint: map.get($breakpoints, $breakpoint);
+  @if $currentBreakpoint == null {
+    $errorMessage1: 'Invalid breakpoint was given:';
+    $errorMessage2: 'Possible values are: xs, sm, md, lg, xl and xxl.';
+    @error $errorMessage1 + " " + $breakpoint + ". " + $errorMessage2;
+  }
+
+  @if $breakpoint == 'xxl' {
+    $min-width: map.get($currentBreakpoint, "start");
+    @media screen and (min-width: $min-width) {
+      @content;
+    }
+  } @else {
+    $max-width: map.get($currentBreakpoint, "end");
+    $min-width: map.get($currentBreakpoint, "start");
+    @media screen and (min-width: $min-width) and (max-width: $max-width) {
+      @content;
+    }
+  }
+}
+
+@mixin and-down($breakpoint) {
+  $currentBreakpoint: map.get($breakpoints, $breakpoint);
+  @if $currentBreakpoint == null {
+    $errorMessage1: 'Invalid breakpoint was given:';
+    $errorMessage2: 'Possible values are: xs, sm, md, lg, xl and xxl.';
+    @error $errorMessage1 + " " + $breakpoint + ". " + $errorMessage2;
+  }
+
+  @if $breakpoint == 'xxl' {
+    @media screen {
+      @content;
+    }
+  } @else {
+    $max-width: map.get($currentBreakpoint, "end");
+
+    @media screen and (max-width: $max-width)  {
+      @content;
+    }
+  }
+}
+
+@mixin and-up($breakpoint) {
+  $currentBreakpoint: map.get($breakpoints, $breakpoint);
+  @if $currentBreakpoint == null {
+    $errorMessage1: 'Invalid breakpoint was given:';
+    $errorMessage2: 'Possible values are: xs, sm, md, lg, xl and xxl.';
+    @error $errorMessage1 + " " + $breakpoint + ". " + $errorMessage2;
+  }
+
+  $min-width: map.get($currentBreakpoint, "start");
+
+  @media screen and (min-width: $min-width) {
+    @content;
+  }
+}

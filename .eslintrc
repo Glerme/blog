@@ -1,0 +1,10 @@
+{
+  "extends": "next",
+  "rules": {
+    "no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+    "react/display-name": "off"  
+  }
+}

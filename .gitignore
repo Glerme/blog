@@ -1,0 +1,11 @@
+# next.js build output
+.next
+# Environment variables file
+.env
+.env.local
+# Dependency directories
+node_modules/
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

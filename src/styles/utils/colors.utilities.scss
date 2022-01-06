@@ -1,0 +1,26 @@
+@use '../colors.scss';
+
+$all_colors: (
+  white: colors.$white,
+  black: colors.$black,
+  green: colors.$green,
+  blue: colors.$blue,
+  orange: colors.$orange,
+  red: colors.$red,
+  primary: colors.$primary,
+  secondary: colors.$secondary,
+  info: colors.$info,
+  warning: colors.$warning,
+  error: colors.$error,
+  success: colors.$success,
+);
+
+@each $color, $value in $all_colors {
+  .#{'' + $color} {
+    color: $value;
+  }
+
+  .bg-#{'' + $color} {
+    background-color: $value;
+  }
+}
