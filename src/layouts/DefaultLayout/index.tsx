@@ -96,7 +96,7 @@ export const DefaultLayout: React.FC = ({ children }) => {
         </button>
       </div>
 
-      <div className={styles['content']}>{children}</div>
+      {children}
     </>
   );
 };

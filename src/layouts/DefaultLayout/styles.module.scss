@@ -20,9 +20,9 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 0 1rem;
-
   color: colors.$white;
+
+  padding: 0.5rem;
 
   z-index: 5;
 
@@ -32,7 +32,7 @@
     justify-content: flex-end;
     margin: 0 auto;
 
-    max-width: 1400px;
+    max-width: 1140px;
 
     nav {
       display: flex;

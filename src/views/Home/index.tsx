@@ -1,3 +1,9 @@
 export const HomeView: React.FC = () => {
-  return <></>;
+  return (
+    <div className="container-global">
+      <div>
+        <button>aaa</button>
+      </div>
+    </div>
+  );
 };
