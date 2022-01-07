@@ -13,6 +13,7 @@ $all_colors: (
   warning: colors.$warning,
   error: colors.$error,
   success: colors.$success,
+  gradient: colors.$gradient,
 );
 
 @each $color, $value in $all_colors {

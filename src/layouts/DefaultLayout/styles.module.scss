@@ -48,17 +48,9 @@
   display: grid;
   place-items: center;
 
-  padding: 1rem;
   height: 100%;
 
-  @include breakpoints.and-up(md) {
-    width: 20%;
-  }
-
-  a {
-    font-size: 1rem;
-    font-weight: bold;
-  }
+  color: colors.$purple-light;
 }
 
 .nav-buttons {
@@ -105,24 +97,28 @@
         margin-top: initial;
       }
     }
-  }
 
-  a {
-    display: grid;
-    place-items: center;
+    a {
+      display: grid;
+      place-items: center;
 
-    font-size: 1.2rem;
+      font-size: 1.2rem;
 
-    margin: 1rem;
+      margin: 1rem;
 
-    transition: all 0.4s ease-in;
+      transition: all 0.4s ease-in;
 
-    &:hover {
-      color: colors.$red;
+      color: colors.$gray-50;
+
+      &:hover {
+        color: colors.$purple-light;
+      }
+
+      &.link-active {
+        color: colors.$purple-light;
+        border-bottom: 3px solid colors.$purple-light;
+      }
     }
-  }
-
-  h1 {
   }
 }
 
@@ -136,6 +132,9 @@
   left: 0;
 
   width: 100%;
+
+  background: colors.$purple-light;
+  background: colors.$gradient;
 
   @include breakpoints.and-up(md) {
     display: flex;
@@ -178,7 +177,7 @@
 
   width: 30px;
   height: 2px;
-  background-color: #ffffff;
+  background-color: colors.$white;
   position: relative;
   top: 0;
   left: 0;
@@ -192,16 +191,16 @@
   position: absolute;
   width: 30px;
   height: 2px;
-  background-color: #ffffff;
+  background-color: colors.$white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition-duration: 0.5s;
 }
 
 .hamburguer:before {
-  top: -16px;
+  top: -10px;
 }
 .hamburguer:after {
-  top: 16px;
+  top: 10px;
 }
 
 .menu-button.active .hamburguer {

@@ -1,11 +1,14 @@
 import { useState } from 'react';
 
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import styles from './styles.module.scss';
+import { ActiveLink } from 'components/Menu/ActiveLink';
 
 export const DefaultLayout: React.FC = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <>
@@ -16,8 +19,8 @@ export const DefaultLayout: React.FC = ({ children }) => {
         ].join(' ')}
       >
         <nav>
-          <div className={styles['logo-button']}>
-            <Link href="#" passHref>
+          <div className={styles['logo-button']} title="Blog">
+            <Link href="/" passHref>
               <a>
                 <h1>Naped</h1>
               </a>
@@ -31,32 +34,52 @@ export const DefaultLayout: React.FC = ({ children }) => {
             ].join(' ')}
           >
             <li>
-              <a href="/" title="Home">
-                Home
-              </a>
+              <ActiveLink
+                href="/"
+                passHref
+                activeClassName={styles['link-active']}
+              >
+                <a title="Home">Home</a>
+              </ActiveLink>
             </li>
             <li>
-              <a href="/series" title="Agentes">
-                Séries
-              </a>
-            </li>
-
-            <li>
-              <a href="/filmes" title="Filmes">
-                Filmes
-              </a>
-            </li>
-
-            <li>
-              <a href="/animes" title="Animes">
-                Animes
-              </a>
+              <ActiveLink
+                href="/series"
+                passHref
+                activeClassName={styles['link-active']}
+              >
+                <a title="Séries">Séries</a>
+              </ActiveLink>
             </li>
 
             <li>
-              <a href="/games" title="Games">
-                Games
-              </a>
+              <ActiveLink
+                href="/filmes"
+                passHref
+                activeClassName={styles['link-active']}
+              >
+                <a title="Filmes">Filmes</a>
+              </ActiveLink>
+            </li>
+
+            <li>
+              <ActiveLink
+                href="/animes"
+                passHref
+                activeClassName={styles['link-active']}
+              >
+                <a title="Animes">Animes</a>
+              </ActiveLink>
+            </li>
+
+            <li>
+              <ActiveLink
+                href="/games"
+                passHref
+                activeClassName={styles['link-active']}
+              >
+                <a title="Games">Games</a>
+              </ActiveLink>
             </li>
           </ul>
         </nav>
