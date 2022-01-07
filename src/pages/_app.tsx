@@ -14,7 +14,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       <Head>
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>NextJS Starter</title>
+        <title>Naped</title>
       </Head>
 
       <DefaultLayout>
