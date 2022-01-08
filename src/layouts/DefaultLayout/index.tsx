@@ -8,7 +8,6 @@ import { ActiveLink } from 'components/Menu/ActiveLink';
 
 export const DefaultLayout: React.FC = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
 
   return (
     <>
