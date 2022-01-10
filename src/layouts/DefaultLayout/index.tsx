@@ -95,7 +95,21 @@ export const DefaultLayout: React.FC = ({ children }) => {
         </button>
       </div>
 
-      {children}
+      <main>{children}</main>
+
+      <footer className={styles['footer']}>
+        <h2>Naped</h2>
+        <p>
+          Todas as imagens de filmes, séries e etc são marcas registradas dos
+          seus respectivos proprietários.
+        </p>
+        <p>
+          Criado por{' '}
+          <a href="https://glerme.dev/" target="_blank" rel="noreferrer">
+            Guilherme Felipe
+          </a>
+        </p>
+      </footer>
     </>
   );
 };
