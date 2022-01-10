@@ -1,0 +1,80 @@
+@use 'styles/colors.scss';
+@use 'styles/breakpoints.scss';
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  flex: 1;
+
+  width: 100%;
+
+  & > label {
+    width: 100%;
+  }
+}
+
+.input-field-container {
+  display: flex;
+  align-items: center;
+
+  color: colors.$text-primary;
+  background: colors.$input-background;
+  border: 2px solid colors.$input-background;
+  border-radius: 8px;
+
+  overflow: hidden;
+  width: 100%;
+
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: colors.$white;
+  }
+
+  & > button {
+    display: flex;
+    align-items: center;
+
+    padding: 0 0.375rem;
+
+    border: 0;
+    background-color: transparent;
+
+    color: colors.$gray-50;
+  }
+}
+
+.input-field {
+  border: 0;
+  color: colors.$text-primary;
+  font-size: 1rem;
+  font-weight: 500;
+  outline: 0;
+  padding: 0 0.5rem;
+  width: 100%;
+  height: 45px;
+
+  background: colors.$input-background;
+
+  &::placeholder {
+    font-family: 'Lexend Deca', sans-serif;
+    color: colors.$gray-200;
+  }
+
+  &:disabled {
+    background: colors.$gray-200;
+  }
+
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 30px white inset;
+  }
+
+  &::-moz-placeholder {
+    opacity: 1;
+  }
+}
+
+.is-focused {
+  border: 2px solid colors.$purple-light !important;
+}

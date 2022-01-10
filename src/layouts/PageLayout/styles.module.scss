@@ -1,0 +1,55 @@
+@use './styles/colors.scss';
+@use './styles/breakpoints.scss';
+
+.header-container {
+  display: grid;
+  gap: 2rem;
+
+  & > form {
+    width: 100%;
+  }
+}
+
+.img-container {
+  display: grid;
+
+  position: relative;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.5) 5%
+    );
+
+    padding: 1rem;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    transition: all 0.4s;
+
+    & > h1 {
+      margin: 0;
+      font-weight: 300;
+
+      @include breakpoints.and-up(md) {
+        font-size: 3rem;
+        margin: 1rem 0;
+      }
+    }
+
+    & > p {
+      line-height: 1.3rem;
+    }
+  }
+}

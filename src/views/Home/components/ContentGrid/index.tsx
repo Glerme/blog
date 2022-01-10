@@ -26,7 +26,7 @@ export const ContentGrid: React.FC = () => {
               exercitationem .
             </p>
             <span>00/00/0000</span>
-            <Link href="#" passHref>
+            <Link href="/post/aaa" passHref>
               <a>Ler Notícia</a>
             </Link>
           </div>

@@ -15,7 +15,7 @@ export const MainGrid: React.FC = () => {
       </div>
 
       <div className={styles['grid']}>
-        <Link href={'#'} passHref>
+        <Link href="/post/aaa" passHref>
           <a className={[styles['card'], styles['main-card']].join(' ')}>
             <img src="/images/img1.png" alt="Imagem 1" />
             <main>

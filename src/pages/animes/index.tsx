@@ -1,7 +1,8 @@
+import { PageLayout } from 'layouts/PageLayout';
 import { GetServerSideProps, NextPage } from 'next';
 
 const Animes: NextPage = () => {
-  return <></>;
+  return <PageLayout />;
 };
 
 export default Animes;
