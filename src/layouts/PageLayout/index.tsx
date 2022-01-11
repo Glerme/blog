@@ -7,7 +7,17 @@ import { InputSearch } from 'components/Forms/InputSearch';
 
 import styles from './styles.module.scss';
 
-export const PageLayout: React.FC = () => {
+type PageLayoutProps = {
+  title: string;
+  subtitle: string;
+  templateImage: string;
+};
+
+export const PageLayout: React.FC<PageLayoutProps> = ({
+  title,
+  subtitle,
+  templateImage,
+}) => {
   const [search, setSearch] = useState('');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -21,10 +31,10 @@ export const PageLayout: React.FC = () => {
       <div>
         <div className={styles['header-container']}>
           <div className={styles['img-container']}>
-            <img src="/images/animePage.png" alt="Capa Anime" />
+            <img src={templateImage} alt={title} />
             <div>
-              <h1>Animes</h1>
-              <p>Tudo sobre seus animes favoritos!</p>
+              <h1>{title}</h1>
+              <p>{subtitle}</p>
             </div>
           </div>
 
@@ -39,7 +49,7 @@ export const PageLayout: React.FC = () => {
           </form>
         </div>
 
-        <RecentNews />
+        <RecentNews isPaginate />
       </div>
     </main>
   );

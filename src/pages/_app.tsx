@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react';
+
 import Head from 'next/head';
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 
 import { DefaultLayout } from 'layouts/DefaultLayout';
 
@@ -9,6 +12,24 @@ import { ErrorBoundary } from 'components/ErrorBoundary';
 import 'styles/global.scss';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
+  const router = useRouter();
+
+  const [isRouterLoading, setIsRouterLoading] = useState(false);
+
+  useEffect(() => {
+    const start = () => setIsRouterLoading(true);
+    const end = () => setIsRouterLoading(false);
+
+    router.events.on('routeChangeStart', start);
+    router.events.on('routeChangeComplete', end);
+    router.events.on('routeChangeError', end);
+
+    return () => {
+      router.events.off('routeChangeStart', start);
+      router.events.off('routeChangeComplete', end);
+      router.events.off('routeChangeError', end);
+    };
+  }, []);
   return (
     <>
       <Head>
@@ -17,11 +38,15 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
         <title>Naped</title>
       </Head>
 
-      <DefaultLayout>
-        <ErrorBoundary>
-          <Component {...pageProps} />
-        </ErrorBoundary>
-      </DefaultLayout>
+      {isRouterLoading ? (
+        <h1>Carregando...</h1>
+      ) : (
+        <DefaultLayout>
+          <ErrorBoundary>
+            <Component {...pageProps} />
+          </ErrorBoundary>
+        </DefaultLayout>
+      )}
     </>
   );
 };

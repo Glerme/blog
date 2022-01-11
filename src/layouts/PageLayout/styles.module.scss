@@ -15,6 +15,11 @@
 
   position: relative;
 
+  & > img {
+    object-fit: cover;
+    max-height: 18.75rem;
+  }
+
   & > div {
     display: flex;
     flex-direction: column;

@@ -1,0 +1,57 @@
+@use 'styles/colors.scss';
+
+.last-news-card {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+
+  width: 100%;
+
+  margin: 0.3rem 0;
+
+  & > a {
+    & > main {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      background: rgba(0, 0, 0, 0.6);
+
+      padding: 1rem;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      transition: all 0.4s;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      & > h2 {
+        font-size: 1.5rem;
+        font-weight: 300;
+      }
+
+      .badge {
+        background-color: colors.$primary;
+
+        border-radius: 5px;
+
+        padding: 0.5rem;
+        margin-bottom: auto;
+
+        width: min-content;
+
+        p {
+          color: colors.$text-primary;
+        }
+      }
+    }
+  }
+}

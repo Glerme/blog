@@ -2,7 +2,13 @@ import { PageLayout } from 'layouts/PageLayout';
 import { GetServerSideProps, NextPage } from 'next';
 
 const Animes: NextPage = () => {
-  return <PageLayout />;
+  return (
+    <PageLayout
+      title="Animes"
+      subtitle="Sua página de animes"
+      templateImage="./images/animePage.png"
+    />
+  );
 };
 
 export default Animes;

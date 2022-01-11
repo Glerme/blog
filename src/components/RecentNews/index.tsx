@@ -1,47 +1,44 @@
-import axios from 'axios';
-import { Pagination } from 'components/Pagination';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+import ReactPaginate from 'react-paginate';
+
+import { arrayPosts } from 'utils/posts';
+import { LastNewsCard } from './LastNewsCard';
 
 import styles from './styles.module.scss';
 
-export const RecentNews: React.FC = () => {
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, _] = useState(6);
-  const [loading, setLoading] = useState(false);
+type RecentNewsProps = {
+  isPaginate?: boolean;
+};
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        const res = await axios.get(
-          'https://jsonplaceholder.typicode.com/posts',
-        );
+export const RecentNews: React.FC<RecentNewsProps> = ({
+  isPaginate = false,
+}) => {
+  const [posts, setPosts] = useState(arrayPosts);
+  const [currentPage, setCurrentPage] = useState(0);
 
-        setPosts(res.data);
-        setLoading(false);
-      } catch (error) {
-        console.log({ error });
+  const PER_PAGE = 6;
 
-        setLoading(false);
-      }
-    };
+  const handlePageClick = ({ selected: selectedPage }) => {
+    setCurrentPage(selectedPage);
+  };
 
-    fetchPosts();
-  }, []);
+  const offset = currentPage * PER_PAGE;
 
-  //Get current Posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPageData = posts
+    .slice(offset, offset + PER_PAGE)
+    .map(post => (
+      <LastNewsCard
+        key={post.postId}
+        postId={post.postId}
+        img={post.img}
+        link={post.link}
+        tag={post.tag}
+        title={post.title}
+      />
+    ));
 
-  //Change Page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-  if (loading) {
-    return <h1>Carregando</h1>;
-  }
+  const pageCount = Math.ceil(posts.length / PER_PAGE);
 
   return (
     <div>
@@ -49,117 +46,25 @@ export const RecentNews: React.FC = () => {
         <h2>Notícias mais recentes</h2>
       </section>
 
-      <section className={styles['container-grid']}>
-        {currentPosts.map(post => (
-          <p key={post.id}>{post.title}</p>
-        ))}
+      <section className={styles['container-grid']}>{currentPageData}</section>
 
-        <div className={styles['last-news-card']}>
-          <Link href={'#'} passHref>
-            <a>
-              <img src="/images/img5.png" alt="Imagem 5" />
-              <main>
-                <div className={styles['badge']}>
-                  <p>Séries</p>
-                </div>
-                <h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  eros tellus, malesuada et velit in, blandit molestie dolor.
-                </h2>
-              </main>
-            </a>
-          </Link>
-        </div>
-        <div className={styles['last-news-card']}>
-          <Link href={'#'} passHref>
-            <a>
-              <img src="/images/img6.png" alt="Imagem 6" />
-              <main>
-                <div className={styles['badge']}>
-                  <p>Séries</p>
-                </div>
-                <h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  eros tellus, malesuada et velit in, blandit molestie dolor.
-                </h2>
-              </main>
-            </a>
-          </Link>
-        </div>
-        <div className={styles['last-news-card']}>
-          <Link href={'#'} passHref>
-            <a>
-              <img src="/images/img7.png" alt="Imagem 7" />
-              <main>
-                <div className={styles['badge']}>
-                  <p>Séries</p>
-                </div>
-                <h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  eros tellus, malesuada et velit in, blandit molestie dolor.
-                </h2>
-              </main>
-            </a>
-          </Link>
-        </div>
-
-        <div className={styles['last-news-card']}>
-          <Link href={'#'} passHref>
-            <a>
-              <img src="/images/img7.png" alt="Imagem 7" />
-              <main>
-                <div className={styles['badge']}>
-                  <p>Séries</p>
-                </div>
-                <h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  eros tellus, malesuada et velit in, blandit molestie dolor.
-                </h2>
-              </main>
-            </a>
-          </Link>
-        </div>
-
-        <div className={styles['last-news-card']}>
-          <Link href={'#'} passHref>
-            <a>
-              <img src="/images/img7.png" alt="Imagem 7" />
-              <main>
-                <div className={styles['badge']}>
-                  <p>Séries</p>
-                </div>
-                <h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  eros tellus, malesuada et velit in, blandit molestie dolor.
-                </h2>
-              </main>
-            </a>
-          </Link>
-        </div>
-
-        <div className={styles['last-news-card']}>
-          <Link href={'#'} passHref>
-            <a>
-              <img src="/images/img7.png" alt="Imagem 7" />
-              <main>
-                <div className={styles['badge']}>
-                  <p>Séries</p>
-                </div>
-                <h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  eros tellus, malesuada et velit in, blandit molestie dolor.
-                </h2>
-              </main>
-            </a>
-          </Link>
-        </div>
-      </section>
-
-      <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={posts.length}
-        paginate={paginate}
-      />
+      {isPaginate && (
+        <ReactPaginate
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          previousLabel="Voltar"
+          nextLabel="Próximo"
+          pageRangeDisplayed={3}
+          renderOnZeroPageCount={null}
+          containerClassName={styles['pagination-container']}
+          pageLinkClassName={styles['page-link']}
+          previousClassName={styles['previous-item-button']}
+          nextClassName={styles['next-item-button']}
+          breakLabel="..."
+          breakClassName={styles['break-item-button']}
+          activeClassName={styles['active-page']}
+        />
+      )}
     </div>
   );
 };

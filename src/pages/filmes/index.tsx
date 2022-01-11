@@ -1,7 +1,14 @@
+import { PageLayout } from 'layouts/PageLayout';
 import { GetServerSideProps, NextPage } from 'next';
 
 const Filmes: NextPage = () => {
-  return <></>;
+  return (
+    <PageLayout
+      title="Filmes"
+      subtitle="Sua página de filmes"
+      templateImage="./images/moviesPage.jpg"
+    />
+  );
 };
 
 export default Filmes;
