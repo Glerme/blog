@@ -1,221 +1,12 @@
 @use 'styles/colors.scss';
 @use 'styles/breakpoints.scss';
 
-.overlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  opacity: 0.8;
+.global-container {
+  display: grid;
+  grid-template-rows: 6.25rem 2fr 1fr;
 
   width: 100%;
-
-  @include breakpoints.and-up(md) {
-    position: initial;
-  }
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  color: colors.$white;
-
-  padding: 0.5rem;
-
-  z-index: 5;
-
-  position: relative;
-
-  @include breakpoints.and-up(md) {
-    justify-content: flex-end;
-    margin: 0 auto;
-
-    max-width: 1140px;
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      width: 100%;
-    }
-  }
-}
-
-.logo-button {
-  display: grid;
-  place-items: center;
-
   height: 100%;
-
-  color: colors.$purple-light;
-}
-
-.nav-buttons {
-  display: none;
-
-  list-style: none;
-
-  background: colors.$secondary;
-
-  width: 100%;
-  height: 100vh;
-
-  @include breakpoints.and-up(md) {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    background: transparent;
-
-    margin-top: 0;
-
-    height: initial;
-  }
-
-  li {
-    transform: translateY(2%);
-    transition: all 300ms ease-in;
-
-    padding: 1rem;
-
-    width: 100%;
-
-    &:first-child {
-      margin-top: 5rem;
-    }
-
-    @include breakpoints.and-up(md) {
-      margin-top: initial;
-
-      width: initial;
-      height: initial;
-
-      &:first-child {
-        margin-top: initial;
-      }
-    }
-
-    a {
-      display: grid;
-      place-items: center;
-
-      font-family: 'Lexend Deca', sans-serif;
-      font-size: 1.2rem;
-
-      margin: 1rem;
-
-      transition: all 0.4s ease-in;
-
-      color: colors.$gray-50;
-
-      &:hover {
-        color: colors.$white;
-      }
-
-      &.link-active {
-        color: colors.$purple-light;
-        border-bottom: 3px solid colors.$purple-light;
-      }
-    }
-  }
-}
-
-.nav-buttons-open {
-  display: grid;
-  place-items: center;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-
-  background: colors.$purple-light;
-  background: colors.$gradient;
-
-  @include breakpoints.and-up(md) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: transparent;
-
-    margin-top: 0;
-
-    position: initial;
-
-    height: initial;
-  }
-}
-
-.menu-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: transparent;
-  border: 0;
-  font-size: 0;
-
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
-  padding: 0.9rem;
-
-  @include breakpoints.and-up(md) {
-    display: none;
-  }
-}
-
-.hamburguer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 30px;
-  height: 2px;
-  background-color: colors.$white;
-  position: relative;
-  top: 0;
-  left: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition-duration: 0.5s;
-}
-
-.hamburguer:before,
-.hamburguer:after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background-color: colors.$white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition-duration: 0.5s;
-}
-
-.hamburguer:before {
-  top: -10px;
-}
-.hamburguer:after {
-  top: 10px;
-}
-
-.menu-button.active .hamburguer {
-  background-color: rgba(0, 0, 0, 0);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
-}
-
-.menu-button.active .hamburguer:before {
-  top: 0;
-  transform: rotate(45deg);
-}
-
-.menu-button.active .hamburguer:after {
-  top: 0;
-  transform: rotate(135deg);
 }
 
 .footer {
@@ -225,10 +16,16 @@
 
   background: #322650;
 
-  margin-top: 3rem;
+  position: static;
+  bottom: 0;
+  left: 0;
+
+  margin-top: 5rem;
   padding: 2rem;
 
   text-align: center;
+
+  width: 100%;
 
   h2 {
     font-weight: 300;

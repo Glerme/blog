@@ -1,11 +1,12 @@
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
+
 import { PostView } from 'views/Posts';
 
 type PostProps = {
   slug: string;
 };
 
-const Post: React.FC<PostProps> = ({ slug }) => {
+const Post: NextPage<PostProps> = ({ slug }) => {
   return <PostView slug={slug} />;
 };
 

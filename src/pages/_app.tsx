@@ -10,6 +10,7 @@ import { DefaultLayout } from 'layouts/DefaultLayout';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 
 import 'styles/global.scss';
+import { Loading } from 'components/Loading';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -39,7 +40,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       </Head>
 
       {isRouterLoading ? (
-        <h1>Carregando...</h1>
+        <Loading />
       ) : (
         <DefaultLayout>
           <ErrorBoundary>
