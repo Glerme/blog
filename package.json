@@ -11,10 +11,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@prismicio/client": "^6.0.0",
+    "@prismicio/react": "^2.0.2",
     "axios": "^0.24.0",
     "next": "^12.0.4",
     "next-compose-plugins": "^2.2.1",
     "normalize.css": "^8.0.1",
+    "prismic-dom": "^2.2.7",
+    "prismic-javascript": "^3.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
@@ -24,6 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^16.11.9",
+    "@types/prismic-dom": "^2.1.1",
     "@types/react": "^17.0.35",
     "@types/react-paginate": "^7.1.1",
     "@types/sass": "^1.43.0",

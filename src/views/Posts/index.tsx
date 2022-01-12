@@ -5,9 +5,25 @@ import { PostContent } from './components/PostContent';
 
 type PostViewProps = {
   slug: string;
+  data: any[];
+  // data: {
+  //   id: string;
+  //   uid: string;
+  //   url: string;
+  //   type: string;
+  //   href: string;
+  //   tags: any[];
+  //   first_publication_date: string;
+  //   last_publication_date: string;
+  //   slugs: string[];
+  //   data: {
+  //     title: [{ type: string; text: string; spans: string[] }];
+  //     content: Record<string, any>[];
+  //   };
+  // }[];
 };
 
-export const PostView: React.FC<PostViewProps> = ({ slug }) => {
+export const PostView: React.FC<PostViewProps> = ({ slug, data }) => {
   return (
     <>
       <Head>
@@ -15,7 +31,7 @@ export const PostView: React.FC<PostViewProps> = ({ slug }) => {
       </Head>
 
       <main className="container-global">
-        <PostContent />
+        <PostContent data={data} />
         <RecentNews />
       </main>
     </>

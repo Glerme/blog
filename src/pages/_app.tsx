@@ -5,12 +5,15 @@ import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
+import { client } from '../services/prismic';
+import { PrismicProvider } from '@prismicio/react';
+
 import { DefaultLayout } from 'layouts/DefaultLayout';
 
+import { Loading } from 'components/Loading';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 
 import 'styles/global.scss';
-import { Loading } from 'components/Loading';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -42,11 +45,13 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       {isRouterLoading ? (
         <Loading />
       ) : (
-        <DefaultLayout>
-          <ErrorBoundary>
-            <Component {...pageProps} />
-          </ErrorBoundary>
-        </DefaultLayout>
+        <PrismicProvider client={client}>
+          <DefaultLayout>
+            <ErrorBoundary>
+              <Component {...pageProps} />
+            </ErrorBoundary>
+          </DefaultLayout>
+        </PrismicProvider>
       )}
     </>
   );

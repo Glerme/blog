@@ -5,5 +5,9 @@ declare namespace NodeJS {
     API_URL: string;
     APP_URL: string;
     API_IMAGE: string;
+    REPO_NAME: string;
+    PRISMIC_ACCESS_TOKEN: string;
+    PRISMIC_CLIENT_ID: string;
+    PRISMIC_API_URL: string;
   }
 }
