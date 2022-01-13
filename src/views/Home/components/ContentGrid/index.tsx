@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 
 type ContentGridProps = {
   lastPosts: {
+    id: string;
     title: string;
     subtitle: string;
     image: PostImg;

@@ -18,6 +18,10 @@ export const ALL_POSTS_QUERY = gql`
           tagPost
           slug
           mainImg
+          content
+          authorName
+          authorBg
+          aboutAuthor
           _meta {
             id
           }

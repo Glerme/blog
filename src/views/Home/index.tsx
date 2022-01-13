@@ -7,6 +7,7 @@ import { PostContent } from 'types/Post/PostContent';
 
 type HomeViewProps = {
   mainCards: {
+    id: string;
     title: string;
     subtitle: string;
     image: PostImg;
@@ -14,6 +15,7 @@ type HomeViewProps = {
     slug: PostContent[];
   }[];
   lastPosts: {
+    id: string;
     title: string;
     subtitle: string;
     image: PostImg;

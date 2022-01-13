@@ -10,6 +10,7 @@ import type { PostContent } from 'types/Post/PostContent';
 
 type HomeProps = {
   mainCards: {
+    id: string;
     title: string;
     subtitle: string;
     image: PostImg;
@@ -17,6 +18,7 @@ type HomeProps = {
     slug: PostContent[];
   }[];
   lastPosts: {
+    id: string;
     title: string;
     subtitle: string;
     image: PostImg;
@@ -35,8 +37,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const { data } = await AllPosts();
 
-    const lastPosts = data.allMainGrids.edges.map(post => {
+    const lastPosts = data.allPostss.edges.map(post => {
       return {
+        id: post.node._meta.id,
         title: RichText.asText(post.node.title),
         subtitle: RichText.asText(post.node.subtitle),
         image: post.node.mainImg,

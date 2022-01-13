@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 
 type MainGridProps = {
   mainCards: {
+    id: string;
     title: string;
     subtitle: string;
     image: PostImg;
