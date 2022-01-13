@@ -5,5 +5,5 @@ export type QueryGraphql<T> = {
   totalCount: number;
   edges: {
     node: T;
-  };
+  }[];
 };

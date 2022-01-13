@@ -1,8 +1,21 @@
-import styles from './styles.module.scss';
-
 import Link from 'next/link';
 
-export const MainGrid: React.FC = () => {
+import { PostContent } from 'types/Post/PostContent';
+import { PostImg } from 'types/Post/PostImg';
+
+import styles from './styles.module.scss';
+
+type MainGridProps = {
+  mainCards: {
+    title: string;
+    subtitle: string;
+    image: PostImg;
+    tagPost: string;
+    slug: PostContent[];
+  }[];
+};
+
+export const MainGrid: React.FC<MainGridProps> = ({ mainCards }) => {
   return (
     <section>
       <div className={styles['title-container']}>
@@ -15,50 +28,24 @@ export const MainGrid: React.FC = () => {
       </div>
 
       <div className={styles['grid']}>
-        <Link href="/post/spider-man" passHref>
-          <a className={[styles['card'], styles['main-card']].join(' ')}>
-            <img src="/images/img1.png" alt="Imagem 1" />
-            <main>
-              <div className={styles['badge']}>
-                <p>Séries</p>
-              </div>
-              <h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                eros tellus, malesuada et velit in, blandit molestie dolor.
-              </h2>
-            </main>
-          </a>
-        </Link>
-
-        <Link href={'#'} passHref>
-          <a className={[styles['card'], styles['second-card']].join(' ')}>
-            <img src="/images/img2.png" alt="Imagem 2" />
-            <main>
-              <div className={styles['badge']}>
-                <p>Animes</p>
-              </div>
-              <h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                eros tellus, malesuada et velit in, blandit molestie dolor.
-              </h2>
-            </main>
-          </a>
-        </Link>
-
-        <Link href={'#'} passHref>
-          <a className={[styles['card'], styles['third-card']].join(' ')}>
-            <img src="/images/img3.png" alt="Imagem 3" />
-            <main>
-              <div className={styles['badge']}>
-                <p>Games</p>
-              </div>
-              <h2>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                eros tellus, malesuada et velit in, blandit molestie dolor.
-              </h2>
-            </main>
-          </a>
-        </Link>
+        {mainCards?.map((post, i) => {
+          return (
+            <Link href={`/post/${post.slug}`} passHref key={i}>
+              <a className={styles['card']}>
+                <img
+                  src={post.image.url}
+                  alt={post.image.alt || 'Imagem do post'}
+                />
+                <main>
+                  <div className={styles['badge']}>
+                    <p>{post.tagPost}</p>
+                  </div>
+                  <h2>{post.title}</h2>
+                </main>
+              </a>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );

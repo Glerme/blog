@@ -1,50 +1,56 @@
 import { GetServerSideProps, NextPage } from 'next';
 
-import { baseUrl } from '../services/api';
-
-import type { AllPostTypes } from 'types/AllPostTypes';
-
-import { serverSideHandler } from 'utils/serverSideHandler';
-
 import { HomeView } from 'views/Home';
-import { client } from 'services/graphql';
-import gql from 'graphql-tag';
 import { AllPosts } from 'routes/Home';
 
+import { RichText } from 'prismic-dom';
+
+import type { PostImg } from 'types/Post/PostImg';
+import type { PostContent } from 'types/Post/PostContent';
+
 type HomeProps = {
-  data: {
-    main: AllPostTypes[];
-    lastNews: AllPostTypes[];
-    mostRead: AllPostTypes[];
-  };
+  mainCards: {
+    title: string;
+    subtitle: string;
+    image: PostImg;
+    tagPost: string;
+    slug: PostContent[];
+  }[];
+  lastPosts: {
+    title: string;
+    subtitle: string;
+    image: PostImg;
+    tagPost: string;
+    slug: PostContent[];
+  }[];
 };
 
-const Home: NextPage<HomeProps> = ({ data }) => {
-  return <HomeView data={data} />;
+const Home: NextPage<HomeProps> = ({ lastPosts, mainCards }) => {
+  return <HomeView lastPosts={lastPosts} mainCards={mainCards} />;
 };
 
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const result = await AllPosts();
+    const { data } = await AllPosts();
 
-    console.log(result);
+    const lastPosts = data.allMainGrids.edges.map(post => {
+      return {
+        title: RichText.asText(post.node.title),
+        subtitle: RichText.asText(post.node.subtitle),
+        image: post.node.mainImg,
+        tagPost: RichText.asText(post.node.tagPost).toUpperCase() || 'Sem tag',
+        slug: post.node.slug,
+      };
+    });
 
-    const [{ data: main }, { data: lastNews }, { data: mostRead }] =
-      await Promise.all([
-        baseUrl.get('/api/main'),
-        baseUrl.get('/api/last-news'),
-        baseUrl.get('/api/most-read'),
-      ]);
+    const mainCards = lastPosts.splice(0, 3);
 
     return {
       props: {
-        data: {
-          main,
-          lastNews,
-          mostRead,
-        },
+        mainCards,
+        lastPosts,
       },
     };
   } catch (error) {

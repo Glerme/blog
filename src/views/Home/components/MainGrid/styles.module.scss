@@ -38,6 +38,27 @@
   width: 100%;
   height: 100%;
 
+  &:nth-child(1) {
+    grid-area: first;
+  }
+
+  &:nth-child(2) {
+    grid-area: second;
+  }
+
+  &:nth-child(3) {
+    grid-area: third;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 400;
+
+    @include breakpoints.and-up(lg) {
+      font-size: 1.5rem;
+    }
+  }
+
   &:hover {
     & > img {
       transform: scale(1);
