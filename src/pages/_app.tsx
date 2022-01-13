@@ -5,9 +5,6 @@ import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
-import { client } from '../services/prismic';
-import { PrismicProvider } from '@prismicio/react';
-
 import { DefaultLayout } from 'layouts/DefaultLayout';
 
 import { Loading } from 'components/Loading';
@@ -34,6 +31,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       router.events.off('routeChangeError', end);
     };
   }, []);
+
   return (
     <>
       <Head>
@@ -45,13 +43,11 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       {isRouterLoading ? (
         <Loading />
       ) : (
-        <PrismicProvider client={client}>
-          <DefaultLayout>
-            <ErrorBoundary>
-              <Component {...pageProps} />
-            </ErrorBoundary>
-          </DefaultLayout>
-        </PrismicProvider>
+        <DefaultLayout>
+          <ErrorBoundary>
+            <Component {...pageProps} />
+          </ErrorBoundary>
+        </DefaultLayout>
       )}
     </>
   );

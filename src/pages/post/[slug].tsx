@@ -41,8 +41,6 @@ export const getServerSideProps = serverSideHandler(async ctx => {
 
   const data = await (await prismic).getByUID('post', String(slug), {});
 
-  console.log(data);
-
   return {
     props: {
       slug: 'fpi',

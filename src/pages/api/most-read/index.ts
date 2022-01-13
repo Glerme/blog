@@ -8,13 +8,9 @@ const mostReads = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const prismic = await getPrismicClient();
 
-    const response = await prismic.query(
-      [Prismic.Predicates.at('document.type', 'mais-lidas')],
-      {
-        fetch: ['post.title', 'post.content'],
-        pageSize: 20,
-      },
-    );
+    const response = await prismic.query([
+      Prismic.Predicates.at('document.type', 'mais-lidas'),
+    ]);
 
     const lastPosts = response.results
       .map(post => {
@@ -35,8 +31,7 @@ const mostReads = async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.status(200).json(lastPosts);
   } catch (error) {
-    res.setHeader('Allow', 'POST');
-    res.status(405).end('Method Not Allowed');
+    res.status(400).json({ error });
   }
 };
 

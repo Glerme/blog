@@ -4,12 +4,14 @@ import { ContentGrid } from './components/ContentGrid';
 import type { AllPostTypes } from 'types/AllPostTypes';
 
 type HomeViewProps = {
-  data: AllPostTypes[];
+  data: {
+    main: AllPostTypes[];
+    lastNews: AllPostTypes[];
+    mostRead: AllPostTypes[];
+  };
 };
 
 export const HomeView: React.FC<HomeViewProps> = ({ data }) => {
-  console.log(data);
-
   return (
     <main className="container-global">
       <MainGrid />
