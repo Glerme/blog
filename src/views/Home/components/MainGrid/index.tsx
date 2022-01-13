@@ -31,7 +31,7 @@ export const MainGrid: React.FC<MainGridProps> = ({ mainCards }) => {
       <div className={styles['grid']}>
         {mainCards?.map((post, i) => {
           return (
-            <Link href={`/post/${post.slug}`} passHref key={i}>
+            <Link href={`/post/${post.id}`} passHref key={i}>
               <a className={styles['card']}>
                 <img
                   src={post.image.url}
