@@ -1,37 +1,37 @@
 import Head from 'next/head';
 
+import type { PostImg } from 'types/Post/PostImg';
+
 import { RecentNews } from 'components/RecentNews';
 import { PostContent } from './components/PostContent';
 
 type PostViewProps = {
-  slug: string;
-  data: any[];
-  // data: {
-  //   id: string;
-  //   uid: string;
-  //   url: string;
-  //   type: string;
-  //   href: string;
-  //   tags: any[];
-  //   first_publication_date: string;
-  //   last_publication_date: string;
-  //   slugs: string[];
-  //   data: {
-  //     title: [{ type: string; text: string; spans: string[] }];
-  //     content: Record<string, any>[];
-  //   };
-  // }[];
+  post: [
+    {
+      id: string;
+      title: string;
+      subtitle: string;
+      image: PostImg;
+      tagPost: string;
+      slug: string;
+      content: string;
+      authorName: string;
+      authorAbout: string;
+      authorImage: PostImg;
+      authorBackground: PostImg;
+    },
+  ];
 };
 
-export const PostView: React.FC<PostViewProps> = ({ slug, data }) => {
+export const PostView: React.FC<PostViewProps> = ({ post }) => {
   return (
     <>
       <Head>
-        <title>Naped - {slug.toLocaleUpperCase()}</title>
+        <title>Naped - {post[0]?.title.toUpperCase() || ''}</title>
       </Head>
 
       <main className="container-global">
-        <PostContent data={data} />
+        <PostContent post={post} />
         <RecentNews />
       </main>
     </>

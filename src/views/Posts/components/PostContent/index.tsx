@@ -1,66 +1,66 @@
+import type { PostImg } from 'types/Post/PostImg';
+
 import styles from './styles.module.scss';
 
 type PostContentProps = {
-  data: any[];
-
-  // data: {
-  //   id: string;
-  //   uid: string;
-  //   url: string;
-  //   type: string;
-  //   href: string;
-  //   tags: any[];
-  //   first_publication_date: string;
-  //   last_publication_date: string;
-  //   slugs: string[];
-  //   data: {
-  //     title: [{ type: string; text: string; spans: string[] }];
-  //     content: Record<string, any>[];
-  //   };
-  // }[];
+  post: [
+    {
+      id: string;
+      title: string;
+      subtitle: string;
+      image: PostImg;
+      tagPost: string;
+      slug: string;
+      content: string;
+      authorName: string;
+      authorAbout: string;
+      authorImage: PostImg;
+      authorBackground: PostImg;
+    },
+  ];
 };
 
-export const PostContent: React.FC<PostContentProps> = ({ data }) => {
-  // console.log(data);
-
+export const PostContent: React.FC<PostContentProps> = ({ post }) => {
   return (
     <div>
       <section className={styles['title-container']}>
-        {/* <h1>{data[0].data.title[0].text}</h1> */}
-        <p>{}</p>
+        <h1>{post[0].title}</h1>
+        <p>{post[0].subtitle}</p>
 
         <time>{}</time>
       </section>
 
-      <section className={styles['content']}>
+      <section className={styles['content-container']}>
         <div className={styles['main-image']}>
-          <p className={styles['badge']}>Anime</p>
-          <img src="/images/img8.png" alt="Imagem 8" />
+          <p className={styles['badge']}>{post[0].tagPost}</p>
+          <img src={post[0].image.url} alt={post[0].image.alt} />
         </div>
-        data[0].data.content[0].text
+
+        <div
+          className={styles['content']}
+          dangerouslySetInnerHTML={{ __html: post[0].content }}
+        />
       </section>
 
       <footer className={styles['author-container']}>
         <img
-          src="/images/moviesPage.jpg"
-          alt="background"
+          src={post[0].authorBackground.url}
+          alt={post[0].authorBackground.alt}
           className={styles['background-container-author']}
         />
 
         <section className={styles['author-content']}>
           <div>
-            <img src="/images/foto.png" alt="Autor" />
+            <img
+              src={post[0]?.authorImage?.url}
+              alt={post[0]?.authorImage?.alt}
+            />
           </div>
 
           <article>
             <h5>Autor</h5>
-            <h3>Guilherme Felipe</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-              sunt, minus voluptatibus unde cumque repellat nesciunt corporis
-              itaque dolore consequuntur sapiente quo rem adipisci pariatur
-              facilis consequatur, nemo nisi amet?
-            </p>
+            <h3>{post[0].authorName}</h3>
+            <p>{post[0].authorAbout}</p>
           </article>
         </section>
       </footer>

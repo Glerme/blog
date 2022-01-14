@@ -22,13 +22,91 @@
   }
 }
 
-.content {
+.content-container {
   display: grid;
   gap: 2rem;
+}
+
+.main-image {
+  position: relative;
+
+  width: 100%;
+
+  & > img {
+    border-radius: 0.375rem;
+    width: 100%;
+    max-width: 100%;
+    height: 25rem;
+    object-fit: cover;
+
+    background: rgba(0, 0, 0, 0.2);
+    border: 2px solid colors.$purple-light;
+    border-radius: 8px;
+
+    @include breakpoints.and-up(md) {
+      max-width: 100%;
+      height: 26.875rem;
+    }
+  }
+
+  .badge {
+    background-color: colors.$primary;
+    border-radius: 5px;
+
+    color: colors.$text-primary;
+
+    position: absolute;
+
+    top: 1rem;
+    left: 1rem;
+
+    padding: 0.5rem;
+    margin-bottom: auto;
+
+    width: min-content;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid colors.$purple-light;
+  border-radius: 8px;
+
+  padding: 1rem;
+
+  width: 100%;
+
+  iframe {
+    width: 100%;
+    height: 500px;
+
+    max-width: 1200px;
+  }
 
   p {
     font-size: 1.2rem;
     line-height: 1.8rem;
+  }
+
+  p > .block-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.375rem;
+    width: 100%;
+    max-width: 100%;
+    height: 25rem;
+    object-fit: cover;
+
+    @include breakpoints.and-up(md) {
+      width: 68.75rem;
+      max-width: 100%;
+      height: 26.875rem;
+    }
   }
 
   img {
@@ -60,40 +138,9 @@
   ul {
     margin-left: 3rem;
   }
-}
 
-.main-image {
-  position: relative;
-
-  & > img {
-    border-radius: 0.375rem;
-    width: 100%;
-    max-width: 100%;
-    height: 25rem;
-    object-fit: cover;
-
-    @include breakpoints.and-up(md) {
-      width: 68.75rem;
-      max-width: 100%;
-      height: 26.875rem;
-    }
-  }
-
-  .badge {
-    background-color: colors.$primary;
-    border-radius: 5px;
-
-    color: colors.$text-primary;
-
-    position: absolute;
-
-    top: 1rem;
-    left: 1rem;
-
-    padding: 0.5rem;
-    margin-bottom: auto;
-
-    width: min-content;
+  ol {
+    margin-left: 3rem;
   }
 }
 
@@ -105,6 +152,13 @@
   overflow: hidden;
 
   margin: 1rem 0 2rem 0;
+
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid colors.$purple-light;
+  border-radius: 8px;
+
+  width: 100%;
+  height: 100%;
 }
 
 .background-container-author {
@@ -133,6 +187,9 @@
   background: rgba(0, 0, 0, 0.6);
 
   z-index: 1;
+
+  width: 100%;
+  height: 100%;
 
   & > div {
     border: 3px solid colors.$purple-light;

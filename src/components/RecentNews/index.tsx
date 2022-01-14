@@ -41,7 +41,7 @@ export const RecentNews: React.FC<RecentNewsProps> = ({
   const pageCount = Math.ceil(posts.length / PER_PAGE);
 
   return (
-    <div>
+    <div className={styles['container']}>
       <section className={styles['container-title']}>
         <h2>Notícias mais recentes</h2>
       </section>

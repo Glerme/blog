@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const ALL_POSTS_QUERY = gql`
-  {
-    allPostss {
+  query AllPosts($id: String!) {
+    allPostss(id: $id) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -22,6 +22,7 @@ export const ALL_POSTS_QUERY = gql`
           authorName
           authorBg
           aboutAuthor
+          authorImage
           _meta {
             id
           }

@@ -2,24 +2,33 @@ import { client } from 'services/graphql';
 
 import { PostImg } from 'types/Post/PostImg';
 import { PostContent } from 'types/Post/PostContent';
-import { QueryGraphql } from 'types/graphql/QueryGraphqlType';
 
 import { ALL_POSTS_QUERY } from './graphql/query';
 
 export type AllPostsQueryProps = {
-  allPostss: QueryGraphql<{
-    title: PostContent[];
-    subtitle: PostContent[];
-    tagPost: string;
-    slug: PostContent[];
-    mainImg: PostImg;
-    _meta: {
-      id: string;
-    };
-  }>;
+  allPostss: {
+    edges: {
+      node: {
+        title: PostContent[];
+        subtitle: PostContent[];
+        tagPost: string;
+        slug: PostContent[];
+        mainImg: PostImg;
+        content: PostContent[];
+        authorName: PostContent[];
+        authorBg: PostContent[];
+        aboutAuthor: PostContent[];
+        authorImage: PostImg;
+        _meta: {
+          id: string;
+        };
+      };
+    }[];
+  };
 };
 
-export const AllPosts = async () =>
+export const getOnePost = async (variables?: { id: string }) =>
   await client.query<AllPostsQueryProps>({
     query: ALL_POSTS_QUERY,
+    variables,
   });

@@ -1,6 +1,10 @@
 @use 'styles/colors.scss';
 @use 'styles/breakpoints.scss';
 
+.container {
+  margin-top: 1rem;
+}
+
 .container-title {
   margin: 2rem 0;
 
