@@ -30,7 +30,11 @@ export const ContentGrid: React.FC<ContentGridProps> = ({ lastPosts }) => {
               <div className={styles['badge']}>
                 <p>{lastPost.tagPost}</p>
               </div>
-              <h2>{lastPost.title}</h2>
+              <h2>
+                <Link href={`/post/${lastPost.id}`} passHref>
+                  <a>{lastPost.title}</a>
+                </Link>
+              </h2>
               <p>{lastPost.subtitle}</p>
               <span>00/00/0000</span>
               <Link href={`/post/${lastPost.id}`} passHref>
