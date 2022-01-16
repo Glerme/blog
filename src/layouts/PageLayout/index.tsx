@@ -6,6 +6,8 @@ import { RecentNews } from 'components/RecentNews';
 import { InputSearch } from 'components/Forms/InputSearch';
 
 import styles from './styles.module.scss';
+import { baseUrl } from 'services/api';
+import axios from 'axios';
 
 type PageLayoutProps = {
   title: string;
@@ -20,10 +22,10 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
 }) => {
   const [search, setSearch] = useState('');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log('Busca realizada: ', search);
+    axios.post('/api/search-post', { search });
   };
 
   return (
