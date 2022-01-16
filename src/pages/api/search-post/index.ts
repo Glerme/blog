@@ -7,9 +7,9 @@ const searchPost = async (req: NextApiRequest, res: NextApiResponse) => {
 
     console.log(search);
 
-    const searchedPosts = await getSearchedPost({ title_fulltext: search });
-
-    console.log(searchedPosts);
+    const searchedPosts = await getSearchedPost({
+      where: { title_fulltext: search },
+    });
 
     res.status(200).json(searchedPosts);
   } catch (error) {

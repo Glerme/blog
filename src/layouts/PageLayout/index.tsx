@@ -1,13 +1,13 @@
 import { FormEvent, useState } from 'react';
 
+import axios from 'axios';
+import { useRouter } from 'next/router';
 import { FiSearch } from 'react-icons/fi';
 
 import { RecentNews } from 'components/RecentNews';
 import { InputSearch } from 'components/Forms/InputSearch';
 
 import styles from './styles.module.scss';
-import { baseUrl } from 'services/api';
-import axios from 'axios';
 
 type PageLayoutProps = {
   title: string;
@@ -21,11 +21,14 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   templateImage,
 }) => {
   const [search, setSearch] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    axios.post('/api/search-post', { search });
+    await axios.post('/api/search-post', { search });
+
+    router.push(router.asPath, { query: search });
   };
 
   return (

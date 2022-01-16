@@ -5,6 +5,7 @@ import { PostContent } from 'types/Post/PostContent';
 
 import { SEARCH_POSTS_QUERY } from './graphql/query';
 import { PageInfoType } from 'types/graphql/PageInfo';
+import { SearchVariablesType } from 'types/graphql/VariablesType';
 
 export type AllPostsQueryProps = {
   allPostss: {
@@ -31,7 +32,7 @@ export type AllPostsQueryProps = {
   };
 };
 
-export const getSearchedPost = async (variables: { title_fulltext: string }) =>
+export const getSearchedPost = async (variables: SearchVariablesType) =>
   await client.query<AllPostsQueryProps>({
     query: SEARCH_POSTS_QUERY,
     variables,

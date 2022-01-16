@@ -14,8 +14,6 @@ const Series: NextPage = () => {
 export default Series;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  console.log(process.env.APP_URL);
-
   return {
     props: {},
   };

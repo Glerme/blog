@@ -13,8 +13,8 @@ const Filmes: NextPage = () => {
 
 export default Filmes;
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  console.log(process.env.APP_URL);
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const { search } = ctx.query;
 
   return {
     props: {},
