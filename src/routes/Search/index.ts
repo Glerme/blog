@@ -3,9 +3,10 @@ import { client } from 'services/graphql';
 import { PostImg } from 'types/Post/PostImg';
 import { PostContent } from 'types/Post/PostContent';
 
+import type { PageInfoType } from 'types/graphql/PageInfo';
+import type { SearchVariablesType } from 'types/graphql/VariablesType';
+
 import { SEARCH_POSTS_QUERY } from './graphql/query';
-import { PageInfoType } from 'types/graphql/PageInfo';
-import { SearchVariablesType } from 'types/graphql/VariablesType';
 
 export type AllPostsQueryProps = {
   allPostss: {
