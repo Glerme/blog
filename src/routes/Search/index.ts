@@ -19,11 +19,6 @@ export type AllPostsQueryProps = {
         tagPost: string;
         slug: PostContent[];
         mainImg: PostImg;
-        content: PostContent[];
-        authorName: PostContent[];
-        authorBg: PostContent[];
-        aboutAuthor: PostContent[];
-        authorImage: PostImg;
         _meta: {
           id: string;
         };

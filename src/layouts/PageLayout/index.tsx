@@ -7,18 +7,24 @@ import { FiSearch } from 'react-icons/fi';
 import { RecentNews } from 'components/RecentNews';
 import { InputSearch } from 'components/Forms/InputSearch';
 
+import type { PostPreview } from 'types/Post/PostPreview';
+
 import styles from './styles.module.scss';
 
 type PageLayoutProps = {
   title: string;
   subtitle: string;
   templateImage: string;
+  posts: PostPreview[];
+  totalCount: number;
 };
 
 export const PageLayout: React.FC<PageLayoutProps> = ({
   title,
   subtitle,
   templateImage,
+  posts,
+  totalCount,
 }) => {
   const [search, setSearch] = useState('');
   const router = useRouter();
@@ -54,7 +60,13 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
           </form>
         </div>
 
-        <RecentNews isPaginate />
+        {totalCount > 0 ? (
+          <RecentNews isPaginate posts={posts} />
+        ) : (
+          <div className={styles['empty-container']}>
+            <h1>Não possui notícias recentes</h1>
+          </div>
+        )}
       </div>
     </main>
   );

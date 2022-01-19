@@ -2,7 +2,6 @@ import Head from 'next/head';
 
 import type { PostImg } from 'types/Post/PostImg';
 
-import { RecentNews } from 'components/RecentNews';
 import { PostContent } from './components/PostContent';
 
 type PostViewProps = {
@@ -32,7 +31,6 @@ export const PostView: React.FC<PostViewProps> = ({ post }) => {
 
       <main className="container-global">
         <PostContent post={post} />
-        <RecentNews />
       </main>
     </>
   );

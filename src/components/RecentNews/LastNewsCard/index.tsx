@@ -3,11 +3,12 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 
 type LastNewsCard = {
-  postId: number;
-  link: string;
+  postId: string;
+  link?: string;
   img: string;
   tag: string;
   title: string;
+  alt: string;
 };
 
 export const LastNewsCard: React.FC<LastNewsCard> = ({
@@ -16,12 +17,13 @@ export const LastNewsCard: React.FC<LastNewsCard> = ({
   link,
   tag,
   title,
+  alt,
 }) => {
   return (
     <div className={styles['last-news-card']}>
       <Link href={link} passHref>
         <a>
-          <img src={img} alt="Imagem 5" />
+          <img src={img} alt={alt} />
           <main>
             <div className={styles['badge']}>
               <p>{tag}</p>

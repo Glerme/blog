@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const SEARCH_POSTS_QUERY = gql`
+export const GET_ALL_MOVIES_QUERY = gql`
   query AllPosts($where: WherePosts!) {
     allPostss(where: $where) {
       pageInfo {

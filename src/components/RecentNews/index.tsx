@@ -2,19 +2,22 @@ import { useState } from 'react';
 
 import ReactPaginate from 'react-paginate';
 
-import { arrayPosts } from 'utils/posts';
+import type { PostPreview } from 'types/Post/PostPreview';
+
 import { LastNewsCard } from './LastNewsCard';
 
 import styles from './styles.module.scss';
 
 type RecentNewsProps = {
   isPaginate?: boolean;
+  posts: PostPreview[];
 };
 
 export const RecentNews: React.FC<RecentNewsProps> = ({
   isPaginate = false,
+  posts,
 }) => {
-  const [posts, setPosts] = useState(arrayPosts);
+  const [recentPosts, setRecentPosts] = useState(posts);
   const [currentPage, setCurrentPage] = useState(0);
 
   const PER_PAGE = 6;
@@ -25,20 +28,22 @@ export const RecentNews: React.FC<RecentNewsProps> = ({
 
   const offset = currentPage * PER_PAGE;
 
-  const currentPageData = posts
-    .slice(offset, offset + PER_PAGE)
-    .map(post => (
-      <LastNewsCard
-        key={post.postId}
-        postId={post.postId}
-        img={post.img}
-        link={post.link}
-        tag={post.tag}
-        title={post.title}
-      />
-    ));
+  // const currentPageData = recentPosts
+  //   .slice(offset, offset + PER_PAGE)
+  //   .map(post => (
+  //     <LastNewsCard
+  //       key={post.postId}
+  //       postId={post.postId}
+  //       img={post.img}
+  //       link={post.link}
+  //       tag={post.tag}
+  //       title={post.title}
+  //     />
+  //   ));
 
-  const pageCount = Math.ceil(posts.length / PER_PAGE);
+  const pageCount = Math.ceil(recentPosts.length / PER_PAGE);
+
+  console.log(posts);
 
   return (
     <div className={styles['container']}>
@@ -46,7 +51,19 @@ export const RecentNews: React.FC<RecentNewsProps> = ({
         <h2>Notícias mais recentes</h2>
       </section>
 
-      <section className={styles['container-grid']}>{currentPageData}</section>
+      <section className={styles['container-grid']}>
+        {posts.map(post => (
+          <LastNewsCard
+            key={post.id}
+            postId={post.id}
+            img={post.image.url}
+            alt={post.image.alt}
+            link={post.link}
+            tag={post.tagPost}
+            title={post.title}
+          />
+        ))}
+      </section>
 
       {isPaginate && (
         <ReactPaginate
