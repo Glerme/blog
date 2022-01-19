@@ -1,3 +1,4 @@
+@use 'styles/breakpoints.scss';
 @use 'styles/colors.scss';
 
 .last-news-card {
@@ -34,8 +35,12 @@
       }
 
       & > h2 {
-        font-size: 1.5rem;
+        font-size: 1rem;
         font-weight: 300;
+
+        @include breakpoints.and-up(md) {
+          font-size: 1.5rem;
+        }
       }
 
       .badge {

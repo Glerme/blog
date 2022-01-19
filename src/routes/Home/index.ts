@@ -15,6 +15,7 @@ export type AllPostsQueryProps = {
     mainImg: PostImg;
     _meta: {
       id: string;
+      firstPublicationDate: number;
     };
   }>;
 };

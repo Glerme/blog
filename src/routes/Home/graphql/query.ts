@@ -20,6 +20,7 @@ export const ALL_POSTS_QUERY = gql`
           mainImg
           _meta {
             id
+            firstPublicationDate
           }
         }
       }

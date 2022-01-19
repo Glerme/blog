@@ -13,6 +13,7 @@ type MainGridProps = {
     image: PostImg;
     tagPost: string;
     slug: PostContent[];
+    dataPublicacao: number;
   }[];
 };
 

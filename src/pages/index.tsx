@@ -16,6 +16,7 @@ type HomeProps = {
     image: PostImg;
     tagPost: string;
     slug: PostContent[];
+    dataPublicacao: number;
   }[];
   lastPosts: {
     id: string;
@@ -24,6 +25,7 @@ type HomeProps = {
     image: PostImg;
     tagPost: string;
     slug: PostContent[];
+    dataPublicacao: number;
   }[];
 };
 
@@ -34,33 +36,39 @@ const Home: NextPage<HomeProps> = ({ lastPosts, mainCards }) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const { data } = await AllPosts();
+  const { data } = await AllPosts();
 
-    const lastPosts = data.allPostss.edges.map(post => {
+  const lastPosts = data.allPostss.edges
+    .map(post => {
       return {
         id: post.node._meta.id,
-        title: RichText.asText(post.node.title),
-        subtitle: RichText.asText(post.node.subtitle),
-        image: post.node.mainImg,
-        tagPost: RichText.asText(post.node.tagPost).toUpperCase() || 'Sem tag',
-        slug: post.node.slug,
+        title: post.node.title
+          ? RichText.asText(post.node.title)
+          : 'Título Inválido',
+        subtitle: post.node.title
+          ? RichText.asText(post.node.subtitle)
+          : 'Subtitulo inválido',
+        image: post.node.mainImg || {
+          url: '/images/404.png',
+          alt: 'Imagem não encontrada',
+        },
+        tagPost: post.node.tagPost
+          ? RichText.asText(post.node.tagPost).toUpperCase()
+          : 'Sem tag',
+        slug: post.node.slug || 'Sem slug',
+        dataPublicacao: new Date(
+          post.node._meta.firstPublicationDate,
+        ).getTime(),
       };
-    });
+    })
+    .sort((a, b) => (a.dataPublicacao < b.dataPublicacao ? 1 : -1));
 
-    const mainCards = lastPosts.splice(0, 3);
+  const mainCards = lastPosts.splice(0, 3);
 
-    return {
-      props: {
-        mainCards,
-        lastPosts,
-      },
-    };
-  } catch (error) {
-    console.log({ error });
-
-    return {
-      props: {},
-    };
-  }
+  return {
+    props: {
+      mainCards,
+      lastPosts,
+    },
+  };
 };

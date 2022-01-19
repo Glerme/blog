@@ -13,6 +13,7 @@ type HomeViewProps = {
     image: PostImg;
     tagPost: string;
     slug: PostContent[];
+    dataPublicacao: number;
   }[];
   lastPosts: {
     id: string;
@@ -21,6 +22,7 @@ type HomeViewProps = {
     image: PostImg;
     tagPost: string;
     slug: PostContent[];
+    dataPublicacao: number;
   }[];
 };
 

@@ -13,6 +13,7 @@ type ContentGridProps = {
     image: PostImg;
     tagPost: string;
     slug: PostContent[];
+    dataPublicacao: number;
   }[];
 };
 
@@ -23,7 +24,7 @@ export const ContentGrid: React.FC<ContentGridProps> = ({ lastPosts }) => {
         <div className={styles['container-title']}>
           <h2>Ultimas Notícias</h2>
         </div>
-        {lastPosts.map((lastPost, i) => (
+        {lastPosts?.map((lastPost, i) => (
           <div className={styles['last-notices-card']} key={i}>
             <img src={lastPost.image.url} alt={lastPost.image.alt} />
             <div>
@@ -36,7 +37,11 @@ export const ContentGrid: React.FC<ContentGridProps> = ({ lastPosts }) => {
                 </Link>
               </h2>
               <p>{lastPost.subtitle}</p>
-              <span>00/00/0000</span>
+              <span>
+                {new Intl.DateTimeFormat('pt-BR', {
+                  timeZone: 'UTC',
+                }).format(lastPost.dataPublicacao)}
+              </span>
               <Link href={`/post/${lastPost.id}`} passHref>
                 <a>Ler Notícia</a>
               </Link>

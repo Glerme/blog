@@ -32,38 +32,53 @@ const Post: NextPage<PostProps> = ({ post }) => {
 export default Post;
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  try {
-    const { slug } = ctx.params;
+  const { slug } = ctx.params;
 
-    const { data } = await getOnePost({ id: `${slug}` });
+  const { data } = await getOnePost({ id: `${slug}` });
 
-    const post = data.allPostss.edges.map(post => {
-      return {
-        ...post,
-        id: post.node._meta.id,
-        title: RichText.asText(post.node.title),
-        subtitle: RichText.asText(post.node.subtitle),
-        image: post.node.mainImg,
-        tagPost: RichText.asText(post.node.tagPost).toUpperCase() || 'Sem tag',
-        slug: post.node.slug,
-        content: RichText.asHtml(post.node.content),
-        authorImage: post.node.authorImage,
-        authorName: RichText.asText(post.node.authorName),
-        authorBackground: post.node.authorBg,
-        authorAbout: RichText.asText(post.node.aboutAuthor),
-      };
-    });
-
+  const post = data.allPostss.edges.map(post => {
     return {
-      props: {
-        post,
+      ...post,
+      id: post.node._meta.id,
+      title: post.node.title
+        ? RichText.asText(post.node.title)
+        : 'Título Inválido',
+      subtitle: post.node.title
+        ? RichText.asText(post.node.subtitle)
+        : 'Subtitulo inválido',
+      image: post.node.mainImg || {
+        url: '/images/404.png',
+        alt: 'Imagem não encontrada',
       },
+      tagPost: post.node.tagPost
+        ? RichText.asText(post.node.tagPost).toUpperCase()
+        : 'Sem tag',
+      slug: post.node.slug || 'Sem slug',
+      content: post.node.content
+        ? RichText.asHtml(post.node.content)
+        : '<h1>Conteúdo inválido</h1>',
+      authorImage: post.node.authorImage || {
+        url: '/images/404.png',
+        alt: 'Imagem não encontrada',
+      },
+      authorName: post.node.authorName
+        ? RichText.asText(post.node.authorName)
+        : 'Sem Nome do autor',
+      authorBackground: post.node.authorBg || {
+        url: '/images/404.png',
+        alt: 'Imagem não encontrada',
+      },
+      authorAbout: post.node.aboutAuthor
+        ? RichText.asText(post.node.aboutAuthor)
+        : 'Sem sobre o autor',
     };
-  } catch (error) {
-    console.log({ error });
+  });
 
-    return {
-      props: {},
-    };
-  }
+  console.log(post);
+
+  return {
+    props: {
+      post,
+    },
+  };
 };
