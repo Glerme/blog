@@ -27,10 +27,25 @@ type HomeProps = {
     slug: PostContent[];
     dataPublicacao: number;
   }[];
+  mostReads: {
+    id: string;
+    title: string;
+    subtitle: string;
+    image: PostImg;
+    tagPost: string;
+    slug: PostContent[];
+    dataPublicacao: number;
+  }[];
 };
 
-const Home: NextPage<HomeProps> = ({ lastPosts, mainCards }) => {
-  return <HomeView lastPosts={lastPosts} mainCards={mainCards} />;
+const Home: NextPage<HomeProps> = ({ lastPosts, mainCards, mostReads }) => {
+  return (
+    <HomeView
+      lastPosts={lastPosts}
+      mainCards={mainCards}
+      mostReads={mostReads}
+    />
+  );
 };
 
 export default Home;
@@ -65,10 +80,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   const mainCards = lastPosts.splice(0, 3);
 
+  const mostReads = lastPosts.splice(0, 3);
+
   return {
     props: {
       mainCards,
       lastPosts,
+      mostReads,
     },
   };
 };

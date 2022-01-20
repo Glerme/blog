@@ -1,7 +1,6 @@
 import { MainGrid } from './components/MainGrid';
 import { ContentGrid } from './components/ContentGrid';
 
-import { AllPostsQueryProps } from 'routes/Home';
 import { PostImg } from 'types/Post/PostImg';
 import { PostContent } from 'types/Post/PostContent';
 
@@ -24,13 +23,26 @@ type HomeViewProps = {
     slug: PostContent[];
     dataPublicacao: number;
   }[];
+  mostReads: {
+    id: string;
+    title: string;
+    subtitle: string;
+    image: PostImg;
+    tagPost: string;
+    slug: PostContent[];
+    dataPublicacao: number;
+  }[];
 };
 
-export const HomeView: React.FC<HomeViewProps> = ({ mainCards, lastPosts }) => {
+export const HomeView: React.FC<HomeViewProps> = ({
+  mainCards,
+  lastPosts,
+  mostReads,
+}) => {
   return (
     <main className="container-global">
       <MainGrid mainCards={mainCards} />
-      <ContentGrid lastPosts={lastPosts} />
+      <ContentGrid lastPosts={lastPosts} mostReads={mostReads} />
     </main>
   );
 };

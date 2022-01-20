@@ -15,9 +15,21 @@ type ContentGridProps = {
     slug: PostContent[];
     dataPublicacao: number;
   }[];
+  mostReads: {
+    id: string;
+    title: string;
+    subtitle: string;
+    image: PostImg;
+    tagPost: string;
+    slug: PostContent[];
+    dataPublicacao: number;
+  }[];
 };
 
-export const ContentGrid: React.FC<ContentGridProps> = ({ lastPosts }) => {
+export const ContentGrid: React.FC<ContentGridProps> = ({
+  lastPosts,
+  mostReads,
+}) => {
   return (
     <div className={styles['middle-grid']}>
       <section className={styles['last-notices-container']}>
@@ -55,56 +67,21 @@ export const ContentGrid: React.FC<ContentGridProps> = ({ lastPosts }) => {
           <h2>Mais Lidas</h2>
         </div>
 
-        <div className={styles['most-reads-card']}>
-          <Link href={'#'} passHref>
-            <a>
-              <img src="/images/img5.png" alt="Imagem 5" />
-              <main>
-                <div className={styles['badge']}>
-                  <p>Séries</p>
-                </div>
-                <h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  eros tellus, malesuada et velit in, blandit molestie dolor.
-                </h2>
-              </main>
-            </a>
-          </Link>
-        </div>
-
-        <div className={styles['most-reads-card']}>
-          <Link href={'#'} passHref>
-            <a className={[styles['most-reads-card']].join(' ')}>
-              <img src="/images/img6.png" alt="Imagem 6" />
-              <main>
-                <div className={styles['badge']}>
-                  <p>Séries</p>
-                </div>
-                <h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  eros tellus, malesuada et velit in, blandit molestie dolor.
-                </h2>
-              </main>
-            </a>
-          </Link>
-        </div>
-
-        <div className={styles['most-reads-card']}>
-          <Link href={'#'} passHref>
-            <a className={[styles['most-reads-card']].join(' ')}>
-              <img src="/images/img7.png" alt="Imagem " />
-              <main>
-                <div className={styles['badge']}>
-                  <p>Séries</p>
-                </div>
-                <h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  eros tellus, malesuada et velit in, blandit molestie dolor.
-                </h2>
-              </main>
-            </a>
-          </Link>
-        </div>
+        {mostReads?.map((mostRead, i) => (
+          <div className={styles['most-reads-card']} key={i}>
+            <Link href={`/post/${mostRead.id}`} passHref>
+              <a>
+                <img src={mostRead.image.url} alt={mostRead.image.alt} />
+                <main>
+                  <div className={styles['badge']}>
+                    <p>{mostRead.tagPost}</p>
+                  </div>
+                  <h2>{mostRead.title}</h2>
+                </main>
+              </a>
+            </Link>
+          </div>
+        ))}
       </section>
     </div>
   );
