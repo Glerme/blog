@@ -15,7 +15,7 @@
 </p>
 
 <h1 align="center">
-<img src='./public/giphy.gif'/>
+<img src='./public/giphy.gif' alt="Gif do blog"/>
 </h1>
 
 <br />
