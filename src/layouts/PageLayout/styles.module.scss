@@ -64,3 +64,24 @@
   place-items: center;
   margin-top: 3rem;
 }
+
+.button-get-more-container {
+  display: grid;
+  place-items: center;
+
+  margin-top: 2rem;
+}
+
+.button-get-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  color: colors.$secondary;
+
+  font-size: 1.2rem;
+
+  border: 0;
+  background-color: transparent;
+}

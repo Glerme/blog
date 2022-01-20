@@ -1,4 +1,6 @@
 export type SearchVariablesType = {
+  after?: string;
+  first?: number;
   where: {
     title_fulltext?: string;
     subtitle_fulltext?: string;

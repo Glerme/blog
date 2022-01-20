@@ -1,6 +1,10 @@
+import { PageInfoType } from './graphql/PageInfo';
 import { PostPreview } from './Post/PostPreview';
 
 export type PageProps = {
-  totalCount: number;
-  posts: PostPreview[];
+  initialData: {
+    totalCount: number;
+    posts: PostPreview[];
+    pageInfo: PageInfoType;
+  };
 };
