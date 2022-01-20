@@ -43,8 +43,6 @@ export const RecentNews: React.FC<RecentNewsProps> = ({
 
   const pageCount = Math.ceil(recentPosts.length / PER_PAGE);
 
-  console.log(posts);
-
   return (
     <div className={styles['container']}>
       <section className={styles['container-title']}>
