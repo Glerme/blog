@@ -1,5 +1,5 @@
-<h1 align="center">NextJs Template</h1>
-<p align="center">Template feito para NextJS com Styled Components</p>
+<h1 align="center">Blog Naped</h1>
+<p align="center">Blog para notícias do mundo geek!</p>
 
 <h1 align="center">
     <img src="https://img.shields.io/static/v1?label=Autor&message=Guilherme_Felipe&color=7159c1&style=for-the-badge&logo=ghost"/>
@@ -15,7 +15,7 @@
 </p>
 
 <h1 align="center">
-<img src='https://media.giphy.com/media/V5gLXxKH8z5DvQVz8P/giphy.gif?cid=790b7611168173f76cbd8fdbae635878d5764cc4873a1e8d&rid=giphy.gif&ct=g'/>
+<img src='https://media.giphy.com/media/ylmr24kodvI8HcXMYI/giphy.gif'/>
 </h1>
 
 <br />
@@ -23,7 +23,7 @@
 
 ### 📈 Objetivo
 
-Esse template foi feito com NextJS, Typescript, EsLint, Prettier, Docker e Husky.
+O Blog Naped foi desenvolvido a partir de um desafio do grupo Codelândia. Utilizei a integração com o CMS Prismic para a postagem das notícias, possuindo páginação e buscas. Para as consultas utilizei o GraphQL.
 
 <br />
 <hr>
@@ -54,7 +54,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Typescript](https://www.typescriptlang.org)
 - [Next.Js](https://nextjs.org)
 - [React Js](https://pt-br.reactjs.org)
-- [Styled Components](https://styled-components.com)
+- [SASS](https://sass-lang.com/)
+- [Prismic CMS](https://prismic.io/)
+- [GraphQL](https://graphql.org/)
 
 <br>
 
