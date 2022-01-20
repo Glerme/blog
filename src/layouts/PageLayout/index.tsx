@@ -43,16 +43,34 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   const [pageInfo, setPageInfo] = useState(initialData.pageInfo);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    await axios.post('/api/search-post', { search });
+      setIsLoading(true);
 
-    router.push(router.asPath, { query: search });
+      const { data } = await axios.post('/api/search-post', {
+        title: search,
+        category: router.asPath,
+      });
+
+      const formatedPosts = formatPosts(data);
+
+      setPosts(formatedPosts);
+    } catch (error) {
+      console.log({ error });
+
+      toast.error('Ocorreu um erro para buscar notícias', {
+        theme: 'dark',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getMorePosts = async () => {
-    setIsLoading(true);
     try {
+      setIsLoading(true);
+
       const { data } = await axios.post<AllPreviewQueryProps>(
         `/api/get-more-posts`,
         {
@@ -105,17 +123,21 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
 
             {isLoading ? (
               <Loading />
+            ) : pageInfo.hasNextPage && posts.length !== 0 ? (
+              <div className={styles['button-get-more-container']}>
+                <button
+                  type="button"
+                  onClick={getMorePosts}
+                  className={styles['button-get-more']}
+                >
+                  <FiChevronDown size={24} />
+                  Exibir mais
+                </button>
+              </div>
             ) : (
-              pageInfo.hasNextPage && (
-                <div className={styles['button-get-more-container']}>
-                  <button
-                    type="button"
-                    onClick={getMorePosts}
-                    className={styles['button-get-more']}
-                  >
-                    <FiChevronDown size={24} />
-                    Exibir mais
-                  </button>
+              posts.length === 0 && (
+                <div className={styles['empty-container']}>
+                  <h1>Notícia não encontrada</h1>
                 </div>
               )
             )}

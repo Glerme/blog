@@ -1,20 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+
 import { getSearchedPost } from 'routes/Search';
 
 const searchPost = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    const { search } = req.body;
+  const { title, category, first } = req.body;
 
-    console.log(search);
+  const { data, errors } = await getSearchedPost({
+    where: { title_fulltext: title, tagPost_fulltext: category },
+    first: Number(first) || 3,
+  });
 
-    const searchedPosts = await getSearchedPost({
-      where: { title_fulltext: search },
-    });
-
-    res.status(200).json(searchedPosts);
-  } catch (error) {
-    res.status(400).json({ error });
+  if (errors) {
+    return res.status(400).json({ errors });
   }
+
+  res.status(200).json(data);
 };
 
 export default searchPost;

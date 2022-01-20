@@ -16,9 +16,9 @@ export const RecentNews: React.FC<RecentNewsProps> = ({ posts }) => {
       </section>
 
       <section className={styles['container-grid']}>
-        {posts.map(post => (
+        {posts.map((post, i) => (
           <LastNewsCard
-            key={post.id}
+            key={i}
             postId={post.id}
             img={post.image.url}
             alt={post.image.alt}

@@ -8,7 +8,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label?: string;
   placeholder: string;
-  onIconClick?: () => void;
+  onIconClick?: (e?) => void;
   icon?: ComponentType<IconBaseProps>;
 }
 
