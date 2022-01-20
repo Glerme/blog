@@ -15,7 +15,7 @@
 </p>
 
 <h1 align="center">
-<img src='https://media.giphy.com/media/ylmr24kodvI8HcXMYI/giphy.gif'/>
+<img src='./public/giphy.gif'/>
 </h1>
 
 <br />
