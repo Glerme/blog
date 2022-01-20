@@ -1,9 +1,11 @@
 import { FormEvent, useState } from 'react';
 
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { FiChevronDown, FiSearch } from 'react-icons/fi';
 
+import { Loading } from 'components/Loading';
 import { RecentNews } from 'components/RecentNews';
 import { InputSearch } from 'components/Forms/InputSearch';
 
@@ -65,6 +67,10 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
       setPageInfo(data.allPostss.pageInfo);
     } catch (err) {
       console.log({ err });
+
+      toast.error('Ocorreu um erro para buscar notícias', {
+        theme: 'dark',
+      });
     } finally {
       setIsLoading(false);
     }
@@ -98,7 +104,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
             <RecentNews posts={posts} />
 
             {isLoading ? (
-              <div>LOADING...</div>
+              <Loading />
             ) : (
               pageInfo.hasNextPage && (
                 <div className={styles['button-get-more-container']}>

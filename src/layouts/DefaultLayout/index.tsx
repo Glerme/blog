@@ -23,7 +23,7 @@ export const DefaultLayout: React.FC = ({ children }) => {
             Guilherme Felipe
           </a>
         </p>
-      </footer>{' '}
+      </footer>
     </div>
   );
 };

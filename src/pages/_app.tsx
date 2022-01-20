@@ -5,6 +5,9 @@ import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 import { DefaultLayout } from 'layouts/DefaultLayout';
 
 import { Loading } from 'components/Loading';
@@ -45,6 +48,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
       ) : (
         <DefaultLayout>
           <ErrorBoundary>
+            <ToastContainer />
             <Component {...pageProps} />
           </ErrorBoundary>
         </DefaultLayout>
