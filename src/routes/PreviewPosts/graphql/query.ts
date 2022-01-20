@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const GET_ALL_MOVIES_QUERY = gql`
+export const GET_ALL_TAG_QUERY = gql`
   query AllPosts($where: WherePosts!) {
     allPostss(where: $where) {
       pageInfo {
@@ -20,6 +20,7 @@ export const GET_ALL_MOVIES_QUERY = gql`
           mainImg
           _meta {
             id
+            firstPublicationDate
           }
         }
       }

@@ -5,7 +5,7 @@ import type { PostContent } from 'types/Post/PostContent';
 import type { PageInfoType } from 'types/graphql/PageInfo';
 import type { SearchVariablesType } from 'types/graphql/VariablesType';
 
-import { GET_ALL_MOVIES_QUERY } from './graphql/query';
+import { GET_ALL_TAG_QUERY } from './graphql/query';
 
 export type AllPreviewQueryProps = {
   allPostss: {
@@ -21,6 +21,7 @@ export type AllPreviewQueryProps = {
         mainImg: PostImg;
         _meta: {
           id: string;
+          firstPublicationDate: number;
         };
       };
     }[];
@@ -29,6 +30,6 @@ export type AllPreviewQueryProps = {
 
 export const getPreviewPosts = async (variables: SearchVariablesType) =>
   await client.query<AllPreviewQueryProps>({
-    query: GET_ALL_MOVIES_QUERY,
+    query: GET_ALL_TAG_QUERY,
     variables,
   });
