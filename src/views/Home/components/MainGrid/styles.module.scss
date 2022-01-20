@@ -51,11 +51,11 @@
   }
 
   h2 {
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 400;
 
     @include breakpoints.and-up(lg) {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
   }
 
